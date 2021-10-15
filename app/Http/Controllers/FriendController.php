@@ -45,8 +45,9 @@ class FriendController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {;
+        $friend = \App\Models\Friend::find($id);
+        return view('friends.show', ['friend' => $friend]);
     }
 
     /**
