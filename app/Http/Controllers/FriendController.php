@@ -13,7 +13,7 @@ class FriendController extends Controller
      */
     public function index()
     {
-        $friends = \App\Models\Friend::all();
+        $friends = \App\Models\Friend::paginate(25);
         return view('friends.index', ['friends' => $friends]);
     }
 

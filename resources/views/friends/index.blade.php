@@ -3,8 +3,9 @@
 
     {{-- Making use of the router helper --}}
     <a href="{{ route('friends.create') }}" class="btn btn-primary">Add a Friend</a>
-    <table class="table table-striped table-hover">
+    {{ $friends->links() }}
 
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -36,4 +37,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $friends->links() }}
+
 @endsection
