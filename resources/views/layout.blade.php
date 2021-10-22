@@ -14,7 +14,16 @@
 <body>
     <div class="container">
         <h1>Friends App</h1>
-        @yield('content')
+        {{-- If there is a success message, print it --}}
+        @if (session()->get('success'))
+            <div class="toast toast-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        <div class="mt-1">
+            @yield('content')
+        </div>
+
     </div>
 
 </body>

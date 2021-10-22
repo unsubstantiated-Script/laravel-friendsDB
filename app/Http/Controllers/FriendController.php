@@ -24,7 +24,8 @@ class FriendController extends Controller
      */
     public function create()
     {
-        //
+        $friend = new \App\Models\Friend;
+        return view('friends.create', ['friend' => $friend]);
     }
 
     /**
@@ -35,7 +36,23 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // //getting the data from the request and validating it
+        // $validatedData = $request->validate(
+        //     [
+        //         'first_name' => 'required',
+        //         'last_name' => 'required',
+        //         'age' => 'integer',
+        //     ]
+        // );
+
+        //if the data is good, creating a new friend bit of data
+        \App\Models\Friend::create($this->validateData($request));
+        //Dump and die to check what's coming from the request
+        // dd($request);
+
+        //If it is successful we're gonna redirect them back to the main listing with a success message
+        return redirect()->route('friends.index')->with('success', 'Friend was created successfully!');
     }
 
     /**
@@ -45,8 +62,9 @@ class FriendController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {;
-        $friend = \App\Models\Friend::find($id);
+    {
+        //findOrFail will 404 if something vanishes
+        $friend = \App\Models\Friend::findOrFail($id);
         return view('friends.show', ['friend' => $friend]);
     }
 
@@ -58,7 +76,9 @@ class FriendController extends Controller
      */
     public function edit($id)
     {
-        //
+        $friend = \App\Models\Friend::find($id);
+        return view('friends.edit', ['friend' => $friend]);
+
     }
 
     /**
@@ -70,7 +90,16 @@ class FriendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //getting the data from the request and validating it
+
+//if the data is good, creating a new friend bit of data find first -> then update
+        \App\Models\Friend::find($id)->update($this->validateData($request));
+//Dump and die to check what's coming from the request
+// dd($request);
+
+//If it is successful we're gonna redirect them back to the main listing with a success message
+        return redirect()->route('friends.index')->with('success', 'Friend was updated successfully!');
+
     }
 
     /**
@@ -81,6 +110,24 @@ class FriendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Lookup the friend
+        $friend = \App\Models\Friend::find($id);
+        $friend->delete();
+
+        return redirect()->route('friends.index')->with('success', 'Friend was successfully deleted');
+
+    }
+
+    //function to validate data
+    private function validateData($request)
+    {
+        return $validatedData = $request->validate(
+            [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'age' => 'integer',
+            ]
+        );
+
     }
 }
