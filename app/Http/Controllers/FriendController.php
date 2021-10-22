@@ -76,7 +76,7 @@ class FriendController extends Controller
      */
     public function edit($id)
     {
-        $friend = \App\Models\Friend::find($id);
+        $friend = \App\Models\Friend::findOrFail($id);
         return view('friends.edit', ['friend' => $friend]);
 
     }
