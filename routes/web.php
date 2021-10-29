@@ -1,6 +1,5 @@
 <?php
 
-//Super important import style
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,12 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/friends', function () {
-//     //Pulling info from the DB
-//     $friends = Friend::all();
-//     //Sending goods to the friends template
-//     return view('friends', ['friends' => $friends]);
-// });
+Route::resource('friends', 'App\Http\Controllers\FriendController@class');
 
-// Resource route that pulls from the controller
-Route::resource('friends', 'FriendController');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
