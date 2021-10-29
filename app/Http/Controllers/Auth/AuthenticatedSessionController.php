@@ -28,6 +28,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        //Hash::check this is where the password gets checked
         $request->authenticate();
 
         $request->session()->regenerate();

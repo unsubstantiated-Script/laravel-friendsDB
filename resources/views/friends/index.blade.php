@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('dashboard')
 @section('content')
 
     {{-- Making use of the router helper --}}

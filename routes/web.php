@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('friends', 'FriendController');
+//Setting up the auth
+Route::resource('friends', 'FriendController')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
