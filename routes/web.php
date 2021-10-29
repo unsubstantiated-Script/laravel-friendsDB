@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('friends', 'App\Http\Controllers\FriendController@class');
+Route::resource('friends', 'FriendController');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
