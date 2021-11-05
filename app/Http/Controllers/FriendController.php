@@ -22,8 +22,11 @@ class FriendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->user()->cannot('create', Friend::class)) {
+            return redirect()->route('friends.index')->with('error', 'You do not have permissions');
+        }
         $friend = new \App\Models\Friend;
         return view('friends.create', ['friend' => $friend]);
     }

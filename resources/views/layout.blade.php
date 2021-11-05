@@ -34,6 +34,11 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+        @if (session()->get('error'))
+            <div class="toast toast-success">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         <div class="mt-1">
             @yield('content')
         </div>
