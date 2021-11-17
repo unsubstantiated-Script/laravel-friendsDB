@@ -17,13 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// //Setting up the auth
-// Route::resource('friends', 'FriendController')->middleware('auth');
+//Setting up the auth
+Route::resource('/friends', \App\Http\Controller\FriendController::class)->middleware('auth');
 
 Route::get('/playground', \App\Http\Livewire\Playground::class);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
