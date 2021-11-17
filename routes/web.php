@@ -18,7 +18,9 @@ Route::get('/', function () {
 });
 
 //Setting up the auth
-Route::resource('friends', 'FriendController')->middleware('auth');
+//Route::resource('friends', 'FriendController')->middleware('auth');
+
+Route::get('/playground', [\App\Http\Livewire\Playground::class, 'render']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
