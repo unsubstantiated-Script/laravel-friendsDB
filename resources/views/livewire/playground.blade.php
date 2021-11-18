@@ -1,3 +1,6 @@
+@section('title')
+    Plazgrawnd
+@endsection
 <div>
     <div> <button wire:click="increment">+</button>
         {{ $count }}

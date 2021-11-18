@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //Setting up the auth
-Route::resource('/friends', \App\Http\Controller\FriendController::class)->middleware('auth');
+Route::resource('/friends', \App\Http\Controllers\FriendController::class)->middleware('auth');
 
 Route::get('/playground', \App\Http\Livewire\Playground::class);
+
+Route::get('/', \App\Http\Livewire\Friends::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

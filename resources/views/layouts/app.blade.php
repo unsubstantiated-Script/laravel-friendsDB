@@ -5,14 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>@yield('title')</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    {{-- <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
+
+    {{-- <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     @livewireStyles
 </head>
 
 <body>
     <main>
-        <h1>There is livewire!</h1>
-        {{ $slot }}
+        <div class="container mt-2">
+            <h1>@yield('title')</h1>
+            {{ $slot }}
+        </div>
     </main>
     @livewireScripts
 </body>
